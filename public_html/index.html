@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Countdown!</title>
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js" type="text/javascript"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            $(function () {
+                
+                // Config Start
+                var duration = 57600;
+                var futureDate = new Date(2017, 10, 29, 8, 49, 0);
+                // Config End
+                
+                var currentDate = new Date();
+                var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+                if (diff >= 0) {
+                    $($('.black-friday-countdown').get(0)).show();
+                    $('.clock').FlipClock(diff, {
+                        clockFace: 'HourlyCounter',
+                        countdown: true,
+                        callbacks: {
+                            stop: function () {
+                                $($('.clock-normal').get(0)).hide();
+                                $($('.clock-black-friday').get(0)).show();
+                            }}
+                    });
+                } else if (diff < 0 && diff >= -duration) {
+                    $($('.clock-black-friday').get(0)).show();
+                    $($('.clock-normal').get(0)).hide();
+                    $($('.black-friday-countdown').get(0)).hide();
+                } else {
+                    $($('.clock-normal').get(0)).show();
+                    $($('.clock-black-friday').get(0)).hide();
+                }
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="clock-normal">
+            <div class="black-friday-countdown" style="display: none;">
+                Time until some great deals!
+                <div class="clock" style="margin: 2em; margin-left: 25em;"></div>
+            </div>
+
+            <div>
+                Normal deals here
+            </div>
+        </div>
+
+        <div class="clock-black-friday" style="display: none;">
+            Timed deals here
+        </div>
+
+    </body>
+</html>
