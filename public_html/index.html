@@ -11,7 +11,8 @@
                 
                 // Config Start
                 var duration = 57600;
-                var futureDate = new Date(2017, 10, 29, 8, 49, 0);
+                var futureDate = new Date(2050, 10, 29, 8, 49, 0);
+                var clockFace = 'HourlyCounter'; // One of 'DailyCounter', 'HourlyCounter'
                 // Config End
                 
                 var currentDate = new Date();
@@ -20,7 +21,7 @@
                 if (diff >= 0) {
                     $($('.black-friday-countdown').get(0)).show();
                     $('.clock').FlipClock(diff, {
-                        clockFace: 'HourlyCounter',
+                        clockFace: clockFace,
                         countdown: true,
                         callbacks: {
                             stop: function () {
